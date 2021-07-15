@@ -1,0 +1,8 @@
+stages:
+  train:
+    cmd: python train.py
+    deps:
+    - heartDisease.csv
+    metrics:
+    - metrics.json:
+        cache: false
