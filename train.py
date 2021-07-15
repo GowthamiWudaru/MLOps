@@ -34,7 +34,7 @@ def main():
     
     train_accuracy = model.score(x_train, y_train)
     test_accuracy = model.score(x_test, y_test)
-    with open('metrics.txt','w') as of:
+    with open('metrics.json','w') as of:
         json.dump({ "accuracy": test_accuracy}, of)
         of.close()
 
