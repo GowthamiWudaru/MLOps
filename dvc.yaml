@@ -1,0 +1,7 @@
+stages:
+  train:
+    cmd: python train.py
+    deps:
+    - heartDisease.csv
+    outs:
+    - metrics.json
