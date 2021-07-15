@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 import pandas as pd
 
 # Load data 
-df = pd.read_csv("https://raw.githubusercontent.com/GowthamiWudaru/heart-Disease-Prediction-With-Azure/main/heartDisease.csv")
+df = pd.read_csv("heartDisease.csv")
 
 y = df['num']
 x = df.drop(['num'], axis=1)
