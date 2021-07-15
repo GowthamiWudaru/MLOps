@@ -3,5 +3,6 @@ stages:
     cmd: python train.py
     deps:
     - heartDisease.csv
-    outs:
-    - metrics.json
+    metrics:
+    - metrics.json:
+	cache:false
