@@ -6,6 +6,7 @@ from sklearn.metrics import mean_squared_error
 import joblib
 from sklearn.model_selection import train_test_split
 import pandas as pd
+import json
 
 # Load data 
 df = pd.read_csv("heartDisease.csv")
@@ -34,8 +35,7 @@ def main():
     train_accuracy = model.score(x_train, y_train)
     test_accuracy = model.score(x_test, y_test)
     with open('metrics.txt','w') as of:
-        of.write('Train accuracy %1.3f%%\n'% train_accuracy)
-        of.write('Test accuracy %1.3f%%\n'% test_accuracy)
+        json.dump({ "accuracy": test_accuracy}, of)
         of.close()
 
 if __name__ == '__main__':
