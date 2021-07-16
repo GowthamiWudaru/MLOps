@@ -1,0 +1,14 @@
+stages:
+  process:
+    cmd: python3 process.py
+    deps:
+    - processed.cleveland.data
+    outs:
+    - heartDisease.csv
+  train:
+    cmd: python3 train.py
+    deps:
+    - heartDisease.csv
+    metrics:
+    - metrics.json:
+        cache: false
