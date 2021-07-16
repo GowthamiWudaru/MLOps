@@ -16,6 +16,8 @@ jobs:
           dvc remote modify origin --local user GowthamiWudaru
           dvc pull -r origin processed.cleveland.data
       - name: Train model
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Your ML workflow goes here
           pip install -r requirements.txt
