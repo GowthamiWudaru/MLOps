@@ -7,6 +7,7 @@ import joblib
 from sklearn.model_selection import train_test_split
 import pandas as pd
 import json
+import dagshub
 
 # Load data 
 df = pd.read_csv("heartDisease.csv")
@@ -34,9 +35,10 @@ def main():
     
     train_accuracy = model.score(x_train, y_train)
     test_accuracy = model.score(x_test, y_test)
-    with open('metrics.json','w') as of:
-        json.dump({ "accuracy": test_accuracy}, of)
-        of.close()
+    with dagshub.dagshub_logger() as logger:
+        logger.log_hyperparams(model_class=type(model).__name__)
+        logger.log_hyperparams({'model': model.get_params()})
+        logger.log_metrics({f'accuracy':round(test_accuracy,3)})
 
 if __name__ == '__main__':
     main()
