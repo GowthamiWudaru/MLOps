@@ -1,0 +1,7 @@
+sklearn
+argparse
+numpy
+pandas 
+joblib
+dvc
+dagshub
