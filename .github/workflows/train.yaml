@@ -29,5 +29,6 @@ jobs:
           echo "## Model Metrics" > report.md
           # metrics compare
           git fetch --prune
-          dvc metrics diff --show-md main > report.md
+          dvc metrics diff main --targets metrics.json --show-md > report.md
           cml-send-comment report.md
+          cml-send-github-check report.md
