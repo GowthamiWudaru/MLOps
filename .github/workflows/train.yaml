@@ -1,0 +1,28 @@
+name: heart Disease Prediction
+on: [push]
+jobs:
+  run:
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: iterative/setup-cml@v1
+      - name: Train model
+        run: |
+          # Your ML workflow goes here
+          pip install -r requirements.txt
+	        dvc remote add origin https://dagshub.com/GowthamiWudaru/MLOps.dvc
+	        dvc remote modify origin --local auth basic
+	        dvc remote modify origin --local user GowthamiWudaru
+	        dvc remote modify origin --local password ${{ secrets.DVC_MLOPS_TOKEN }}
+          dvc pull -r origin processed.cleveland.data
+	        dvc repro
+          
+          git fetch --prune
+          dvc metrics diff --show-md train_model > report.md
+      - name: Write CML report
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Post reports as comments in GitHub PRs
+          echo "## Model Metrics" > reports.md
+          cml-send-comment report.md
