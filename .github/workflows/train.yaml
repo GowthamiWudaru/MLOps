@@ -6,14 +6,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: iterative/setup-cml@v1
+      - name: Load data
+        env:
+          REPO_TOKEN: ${{ secrets.DVC_MLOPS_TOKEN }}
+        run: |
+          # DVC
+          pip install dvc
+          dvc remote modify origin --local auth basic
+          dvc remote modify origin --local user GowthamiWudaru
+          dvc pull -r origin processed.cleveland.data
       - name: Train model
         run: |
           # Your ML workflow goes here
           pip install -r requirements.txt
-          dvc remote modify origin --local auth basic
-          dvc remote modify origin --local user GowthamiWudaru
-          dvc remote modify origin --local password ${{ secrets.DVC_MLOPS_TOKEN }}
-          dvc pull -r origin processed.cleveland.data
           dvc repro
           # metrics compare
           git fetch --prune
