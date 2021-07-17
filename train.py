@@ -23,7 +23,7 @@ def main():
         logger.log_hyperparams(model_class=type(model).__name__)
         logger.log_hyperparams({'model': model.get_params()})
         logger.log_metrics({f'accuracy':round(test_accuracy,3)})
-    importance = model.coef_[0]
+    importance = model.feature_importances_
     for i,v in enumerate(importance):
         print('Feature: %0d, Score: %.5f' % (i,v))
     # plot feature importance
