@@ -45,6 +45,7 @@ def main():
         logger.log_metrics({f'accuracy':round(test_accuracy,3)})
     importance = model.coef_
     for i,v in enumerate(importance):
+        print(i,v)
         print('Feature: %0d, Score: %.5f' % (i,v))
     # plot feature importance
     plt.bar([x for x in range(len(importance))], importance)
