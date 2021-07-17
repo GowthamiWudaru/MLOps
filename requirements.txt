@@ -1,7 +1,6 @@
 sklearn
-argparse
-numpy
-pandas 
-joblib
+pandas
 dvc
 dagshub
+matplotlib
+xgboost
