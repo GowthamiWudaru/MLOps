@@ -5,6 +5,7 @@ import numpy as np
 from sklearn.metrics import mean_squared_error
 import joblib
 from sklearn.model_selection import train_test_split
+import matplotlib.pyplot import plt
 import pandas as pd
 import json
 import dagshub
@@ -42,6 +43,12 @@ def main():
         logger.log_hyperparams(model_class=type(model).__name__)
         logger.log_hyperparams({'model': model.get_params()})
         logger.log_metrics({f'accuracy':round(test_accuracy,3)})
+    importance = model.coef_
+    for i,v in enumerate(importance):
+	print('Feature: %0d, Score: %.5f' % (i,v))
+    # plot feature importance
+    plt.bar([x for x in range(len(importance))], importance)
+    plt.savefig('feature_importance.png')
 
 if __name__ == '__main__':
     main()
