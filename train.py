@@ -5,7 +5,7 @@ import numpy as np
 from sklearn.metrics import mean_squared_error
 import joblib
 from sklearn.model_selection import train_test_split
-import matplotlib.pyplot import plt
+import matplotlib.pyplot as plt
 import pandas as pd
 import json
 import dagshub
