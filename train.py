@@ -47,7 +47,7 @@ def main():
     for i,v in enumerate(importance):
         print('Feature: %0d, Score: %.5f' % (i,v))
     # plot feature importance
-    plt.bar([x for x in range(len(importance))], importance)
+    plt.bar(x.columns, importance)
     plt.savefig('feature_importance.png')
 
 if __name__ == '__main__':
