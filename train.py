@@ -44,6 +44,7 @@ def main():
         logger.log_hyperparams({'model': model.get_params()})
         logger.log_metrics({f'accuracy':round(test_accuracy,3)})
     importance = model.coef_
+    print(importance)
     for i,v in enumerate(importance):
         print(i,v)
         print('Feature: %0d, Score: %.5f' % (i,v))
