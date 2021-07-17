@@ -1,9 +1,7 @@
 from sklearn.linear_model import LogisticRegression
 import argparse
-import os
 import numpy as np
 from sklearn.metrics import mean_squared_error
-import joblib
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -31,9 +29,6 @@ def main():
 
     model = LogisticRegression(C=args.C, max_iter=args.max_iter).fit(x_train, y_train)
     
-    os.makedirs('outputs',exist_ok=True)
-    joblib.dump(model,'outputs/LogisticRegression.pkl')
-    
     train_accuracy = model.score(x_train, y_train)
     test_accuracy = model.score(x_test, y_test)
     with open('metrics.json','w') as of:
@@ -47,7 +42,7 @@ def main():
     for i,v in enumerate(importance):
         print('Feature: %0d, Score: %.5f' % (i,v))
     # plot feature importance
-    plt.bar(x.columns, importance)
+    plt.barh(x.columns, importance)
     plt.savefig('feature_importance.png')
 
 if __name__ == '__main__':
