@@ -3,4 +3,3 @@ pandas
 dvc
 dagshub
 matplotlib
-xgboost
