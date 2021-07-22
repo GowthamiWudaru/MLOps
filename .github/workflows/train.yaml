@@ -29,6 +29,7 @@ jobs:
           echo "## Model Metrics" > report.md
           # metrics compare
           git fetch --prune
+          cml-publish dvc.lock >> report.md
           dvc metrics diff main --targets metrics.json --show-md >> report.md
           echo "## Model Feature Importance" >> report.md
           cml-publish feature_importance.png --md >> report.md
