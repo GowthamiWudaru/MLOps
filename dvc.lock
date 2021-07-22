@@ -1,0 +1,22 @@
+schema: '2.0'
+stages:
+  process:
+    cmd: python3 process.py
+    deps:
+    - path: processed.cleveland.data
+      md5: 308250d8efcc9cef37ed611a55130910
+      size: 18836
+    outs:
+    - path: heartDisease.csv
+      md5: 5a4b5ee3efbc783a2244bccb0edaa4f6
+      size: 18184
+  train:
+    cmd: python3 train.py
+    deps:
+    - path: heartDisease.csv
+      md5: 5a4b5ee3efbc783a2244bccb0edaa4f6
+      size: 18184
+    outs:
+    - path: metrics.json
+      md5: 6359cc03d54b1c75d6086b136005096c
+      size: 32
